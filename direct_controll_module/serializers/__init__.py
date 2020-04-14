@@ -1,0 +1,1 @@
+from .boolean_iot_device_serializer import BooleanIotDeviceSerializer as _BooleanIotDeviceSerializer

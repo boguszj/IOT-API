@@ -1,0 +1,1 @@
+from .boolean_iot_device_model import BooleanIotDevice as _BooleanIotDevice
