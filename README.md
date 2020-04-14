@@ -1,5 +1,5 @@
 # IOT-API
-Individual project for university
+Individual project for university - django based API
 ## TODO
 - users,
 - auth,
