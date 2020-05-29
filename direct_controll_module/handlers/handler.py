@@ -1,13 +1,8 @@
 class Handler:
 
+    def __init__(self, request, device_id):
+        self.request = request
+        self.device_id = device_id
+
     def handle(self, **kwargs):
         pass
-
-    # def handle(self, request):
-    #     pass
-    #
-    # def handle(self, device_id):
-    #     pass
-    #
-    # def handle(self, request, device_id):
-    #     pass

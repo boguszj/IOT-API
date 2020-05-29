@@ -1,16 +1,20 @@
 from rest_framework import status
 from rest_framework.response import Response
 
+from direct_controll_module.handlers.handler import Handler
 from direct_controll_module.serializers.boolean_iot_device_serializer import BooleanIotDeviceSerializer
 
 
-class CreateDeviceHandler:
+class CreateDeviceHandler(Handler):
 
-    def handle(self, request):
+    def __init__(self, request):
+        super().__init__(request)
 
-        data = request.data
-        if isinstance(request.data, str):
-            data = {'name': request.data}
+    def handle(self):
+
+        data = self.request.data
+        if isinstance(self.request.data, str):
+            data = {'name': self.request.data}
 
         serializer = BooleanIotDeviceSerializer(data=data)
 

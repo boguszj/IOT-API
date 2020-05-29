@@ -28,7 +28,7 @@ SECRET_KEY = '&8(uo!_8aw^wg6xv+0za3e#a3sh8lw2b^jbo%fiu%(r5j*w5)g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['192.168.0.87']
 
 
 # Application definition
@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'direct_controll_module'
+    'direct_controll_module',
+    'social_auth_module',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +53,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_auth_module.middleware.request_auth_preprocessor.RequestAuthPreprocessor',
 ]
 
 ROOT_URLCONF = 'iot_api.urls'
@@ -95,16 +97,16 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME': 'django.contrib.social_auth_module.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.social_auth_module.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.social_auth_module.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.social_auth_module.password_validation.NumericPasswordValidator',
     },
 ]
 
@@ -127,3 +129,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+FB_APP_ID = '167812681239844'
+FB_APP_ACCESS_TOKEN = '167812681239844|pZU-0-fYczaLhyEZACAeG4rP1a8'
+

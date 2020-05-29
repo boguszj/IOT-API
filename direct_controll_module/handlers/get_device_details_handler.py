@@ -8,7 +8,8 @@ from direct_controll_module.serializers.boolean_iot_device_serializer import Boo
 
 class GetDeviceDetailsHandler(Handler):
 
-    def __init__(self):
+    def __init__(self, request, device_id):
+        super().__init__(request, device_id)
         self.device_repository = BooleanIotDeviceRepository()
 
     def handle(self, device_id):

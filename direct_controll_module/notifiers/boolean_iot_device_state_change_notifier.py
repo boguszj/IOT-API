@@ -15,5 +15,4 @@ class BooleanIotDeviceStateChangeNotifier:
         except (requests.exceptions.Timeout, requests.exceptions.ConnectionError):
             pass
         if resp is None or resp.status_code != 200:
-            print('[ERROR] Could not notify iot')
             raise IotNotificationException()
