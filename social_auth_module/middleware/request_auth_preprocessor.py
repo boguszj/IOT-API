@@ -9,7 +9,11 @@ class RequestAuthPreprocessor:
 
     def __call__(self, request):
         try:
-            return self.fb_user_validator.validate(request)
+            if request.META.get('PATH_INFO', None) == '/swagger':
+                print('aaa')
+                return request
+            else:
+                return self.fb_user_validator.validate(request)
         except AppRequestError:
             request.META['preprocessing_status'] = '500'
             return self.fb_user_validator.get_response(request)

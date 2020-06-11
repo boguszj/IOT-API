@@ -1,0 +1,130 @@
+swagger: "2.0"
+info:
+  description: "IOT REST API - API do zarządzania urządzeniami elektrycznymi"
+  version: "1.0.0"
+  title: "IOT API"
+paths:
+  /device:
+    get:
+      tags:
+      - "boolean_iot_device"
+      summary: "Pobierz informacje dotyczące wszytkich urządzeń"
+      description: ""
+      operationId: "get_devices_list"
+      produces:
+      - "application/json"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/boolean_iot_device_representation"
+        "401":
+          description: "Unauthorized"
+  /device/{boolean_device_id}:
+    get:
+      tags:
+      - "boolean_iot_device"
+      summary: "Pobierz informacje dotyczące pojedynczego urządzenia"
+      description: ""
+      operationId: "get_device"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "boolean_device_id"
+        in: "path"
+        description: "ID docelowego urządzenia"
+        required: true
+        type: "string"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            $ref: "#/definitions/boolean_iot_device_representation"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not found"
+  /device/create:
+    post:
+      tags:
+      - "boolean_iot_device"
+      summary: "Dodaj nowe urządzenie"
+      description: ""
+      operationId: "create_device"
+      consumes:
+      - "application/json"
+      produces:
+      - "string"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Created user object"
+        required: true
+        schema:
+          $ref: "#/definitions/boolean_iot_device_payload"
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: "string"
+            example: "b8446cab-e7b2-4690-b11f-1d48aa6aa901"
+        "400":
+          description: "Bad request"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not found"
+  /device/{boolean_device_id}/update}:
+    put:
+      tags:
+      - "boolean_iot_device"
+      summary: "Zmień stan pojedynczego urządzenia"
+      description: ""
+      operationId: "update_device"
+      produces:
+      - "application/json"
+      consumes:
+      - "string"
+      parameters:
+      - name: "boolean_device_id"
+        in: "path"
+        description: "ID docelowego urządzenia"
+        required: true
+        type: "string"
+      - name: "state"
+        in: "body"
+        description: "Porządany stan urządzenia"
+        required: true
+        schema:
+          example: "true"
+      responses:
+        "200":
+          description: "OK"
+        "401":
+          description: "Unauthorized"
+        "404":
+          description: "Not found"
+definitions:
+  boolean_iot_device_representation:
+    type: "object"
+    properties:
+      device_id:
+        type: "string"
+        example: "25e52e50-6099-4746-8c94-ddbafe613175"
+      name:
+        type: "string"
+        example: "lamp"
+      state:
+        type: "boolean"
+  boolean_iot_device_payload:
+    type: "object"
+    required: 
+    - name
+    properties:
+      name:
+        type: "string"
+        example: "lamp"
+      state:
+        type: "boolean"
