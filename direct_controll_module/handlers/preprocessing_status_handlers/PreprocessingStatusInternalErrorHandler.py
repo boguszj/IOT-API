@@ -9,8 +9,8 @@ class PreprocessingStatusInternalErrorHandler(PreprocessingStatusHandlingStrateg
         super().__init__(handler)
 
     def applies(self, meta_status):
-        return meta_status == '500'
+        return meta_status == '501'
 
     def handle(self):
-        return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(status=status.HTTP_501_INTERNAL_SERVER_ERROR)
 

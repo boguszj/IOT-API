@@ -11,7 +11,7 @@ class RequestAuthPreprocessor:
         try:
             return self.fb_user_validator.validate(request)
         except AppRequestError:
-            request.META['preprocessing_status'] = '500'
+            request.META['preprocessing_status'] = '501'
             return self.fb_user_validator.get_response(request)
 
 

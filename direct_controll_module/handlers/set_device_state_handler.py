@@ -24,7 +24,7 @@ class SetDeviceStateHandler(Handler):
         try:
             self.notifier.notify_iot(boolean_iot_device)
         except IotNotificationException:
-            return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            return Response(status=status.HTTP_501_INTERNAL_SERVER_ERROR)
 
         boolean_iot_device.save()
 
